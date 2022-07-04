@@ -1,11 +1,6 @@
 def search_zero_index(arr: str) -> int:
-    """Находит индекс первого вхождения нуля в строку"""
-    count = 0
-    for char in arr:
-        if char != '0':
-            count += 1
-        else:
-            return count
+    """Находит индекс первого вхождения нуля в строку, считая от 0"""
+    return list(arr).index('0')
 
 
 def rectangles(x1: int, y1: int, x2: int, y2: int, x3: int, y3: int, x4: int, y4: int) -> int | bool:

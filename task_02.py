@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def main(url: str, animals_dict: dict) -> None:
+def count_animals(url: str, animals_dict: dict) -> None:
     """Рекурсивно считает кол-во животных на каждую букву, складывая результат в словарь"""
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'html.parser')
@@ -10,7 +10,7 @@ def main(url: str, animals_dict: dict) -> None:
     result = _search_animals(soup, animals_dict)
     if next_link and result:
         print('.', end='')
-        return main(next_link, animals_dict)
+        return count_animals(next_link, animals_dict)
     print('End of list')
 
 
@@ -52,7 +52,7 @@ if __name__ == '__main__':
     start_link = 'https://ru.wikipedia.org/wiki/Категория:Животные_по_алфавиту'
     result_dict = create_result_dict()
 
-    main(start_link, result_dict)
+    count_animals(start_link, result_dict)
 
     total_sum = 0
     for k, v in result_dict.items():
